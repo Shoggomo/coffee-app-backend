@@ -8,6 +8,7 @@ import { RegistrationDto } from '../dtos';
 import { AuthenticationEntity } from '../entities';
 import { UserAlreadyExistException } from '../exceptions';
 import { AuthenticationRepository } from '../repositories';
+import { AuthenticationProvider } from '../providers';
 
 @Injectable()
 export class AuthenticationService {
@@ -61,5 +62,23 @@ export class AuthenticationService {
     );
 
     return queryRunner.manager.save(authentication);
+  }
+
+  public async findAuth(
+    emailAddress: string,
+  ): Promise<AuthenticationEntity | undefined> {
+    return this._authenticationRepository.findOneBy({ emailAddress });
+  }
+
+  async validateUser(
+    emailAddress: string,
+    pass: string,
+  ): Promise<AuthenticationEntity | null> {
+    const hashed = await AuthenticationProvider.generateHash(pass);
+    const auth = await this.findAuth(emailAddress);
+    if (auth && auth.password === hashed) {
+      return auth;
+    }
+    return null;
   }
 }

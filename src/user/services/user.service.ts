@@ -7,8 +7,7 @@ import { UserRepository } from '../repositories';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly _userRepository: UserRepository) {
-  }
+  constructor(private readonly _userRepository: UserRepository) {}
 
   async createUser(
     createUserDto: CreateUserDto,
@@ -21,5 +20,9 @@ export class UserService {
     });
 
     return queryRunner.manager.save(user);
+  }
+
+  async getAllUsers(): Promise<UserEntity[]> {
+    return this._userRepository.find();
   }
 }

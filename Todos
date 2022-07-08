@@ -1,3 +1,13 @@
 Person: {id: string, name: string}
-DeptAmount: {item: string, amount: number}
-Dept: {person: Person, isYourDept: boolean, amounts: DeptAmount[]}
+DeptItem: {name: string, value: number}
+DeptAmount: {item: DeptItem, amount: number}
+
+Dept: {person1: Person, person2: Person, isPerson1Dept: boolean, amounts: DeptAmount[]}
+
+
+Login currently not working. `validate` in `local.strategy.ts` is not called.
+
+
+alle personen
+schulden einer person
+alle items mit CU
