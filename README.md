@@ -26,6 +26,20 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Run Postgres via Docker
+
+```bash
+$ source .env
+$ docker run -d \
+	--name postgres \
+	-e POSTGRES_USER=$POSTGRES_USER \
+	-e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+	-e POSTGRES_DB=$POSTGRES_DB \
+	-v ${HOME}/postgres-data/:/var/lib/postgresql/data \
+        -p 5432:5432 \
+        postgres
+```
+
 ## Installation
 
 ```bash

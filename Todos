@@ -1,0 +1,3 @@
+Person: {id: string, name: string}
+DeptAmount: {item: string, amount: number}
+Dept: {person: Person, isYourDept: boolean, amounts: DeptAmount[]}
