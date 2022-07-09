@@ -1,7 +1,15 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class GetDeptsDto {
+export class AddDeptDto {
   @IsString()
   @IsNotEmpty()
-  readonly username: string;
+  readonly person1UUID: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly person2UUID: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly amount: number;
 }
